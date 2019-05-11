@@ -1,0 +1,35 @@
+<script>
+
+	
+jQuery(function ()
+{
+    jQuery("input[type=file]").change(function() {
+        readURL(this);
+    });
+ 
+    const readURL = (input) => {
+ 
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+ 
+            reader.onload = (e) => {
+                jQuery('#logo-img').attr('src', e.target.result)
+                jQuery('#container-logo').css('display', 'block');
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+})
+</script>
+<div class="row">
+    <div class="form-group col-md-4">
+        <label class="btn btn-default btn-file">
+            Buscar logo<input style="display: none" name="logo" type="file">
+        </label>
+        <span class="help-block"></span>
+    </div>
+ 
+    <div id="container-logo" class="pull-right" style="display: none">
+        <img class="img-responsive" width="200" id="logo-img" src="#" />
+    </div>
+</div>
